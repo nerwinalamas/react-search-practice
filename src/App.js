@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Users from "./Users.json";
+import UserTable from "./UserTable";
 
 function App() {
+  const [isSearch, setIsSearch] = useState("");
+
+  const fields = [
+    "first_name",
+    "last_name",
+    "email",
+    "phone",
+    "city",
+    "country",
+  ];
+
+  const DisplayUsers = Users.filter((user) => {
+    return fields.some((item) =>
+      user[item].toLowerCase().includes(isSearch.toLowerCase())
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-content">
+      <input
+        type="text"
+        placeholder="Search"
+        className="input-search"
+        onChange={(e) => setIsSearch(e.target.value)}
+        value={isSearch}
+      />
+      <UserTable data={DisplayUsers} />
     </div>
   );
 }
