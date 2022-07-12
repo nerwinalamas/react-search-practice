@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserTable({ data }) {
+function UserTable({ data, deleteData }) {
   return (
     <div>
       <table>
@@ -13,18 +13,31 @@ function UserTable({ data }) {
             <th>City</th>
             <th>Country</th>
           </tr>
-          {data.map((user, index) => {
-            return (
-              <tr key={index}>
-                <td className="table-data">{user.first_name}</td>
-                <td className="table-data">{user.last_name}</td>
-                <td className="table-data">{user.email}</td>
-                <td className="table-data">{user.phone}</td>
-                <td className="table-data">{user.city}</td>
-                <td className="table-data">{user.country}</td>
-              </tr>
-            );
-          })}
+          {data.length > 0
+            ? data.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="table-data">{user.first_name}</td>
+                    <td className="table-data">{user.last_name}</td>
+                    <td className="table-data">{user.email}</td>
+                    <td className="table-data">{user.phone}</td>
+                    <td className="table-data">{user.city}</td>
+                    <td className="table-data">{user.country}</td>
+                    <td>
+                      <button className="btn-edit">Edit</button>
+                    </td>
+                    <td>
+                      <button
+                        className="btn-delete"
+                        onClick={() => deleteData(index)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            : "No Data Shown"}
         </tbody>
       </table>
     </div>

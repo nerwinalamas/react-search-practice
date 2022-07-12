@@ -39,3 +39,22 @@
     padding-right: 40px;
 }
 
+.btn-edit, .btn-delete {
+    margin-right: 10px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-delete {
+    background-color: lightcoral;
+}
+
+.btn-edit {
+    background-color: lightgray;
+}
+
+.container-add-user {
+    margin-top: 50px;
+}
